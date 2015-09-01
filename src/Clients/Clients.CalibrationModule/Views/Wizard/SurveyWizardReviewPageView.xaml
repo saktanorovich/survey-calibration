@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Clients.CalibrationModule.Views.Wizard.SurveyWizardReviewPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:Clients.CalibrationModule.Controls"
+             mc:Ignorable="d" Loaded="OnUserControlLoaded"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <controls:SurveySpaceReview Grid.Column="0" Header="Original Space View" ScaleFactor="100" PointRadius="0.8"
+            Source="{Binding SurveyCalibration.Source}"
+            Descriptor="{Binding SurveyCalibration.SourceDescriptor}"/>
+        <controls:SurveySpaceReview Grid.Column="1" Header="Calibrated Space View" ScaleFactor="100" PointRadius="0.8"
+            Source="{Binding SurveyCalibration.Output}"
+            Descriptor="{Binding SurveyCalibration.OutputDescriptor}"/>
+    </Grid>
+</UserControl>

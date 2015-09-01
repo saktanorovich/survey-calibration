@@ -1,0 +1,42 @@
+﻿<controls:SurveyControl x:Class="Clients.CalibrationModule.Controls.SurveySpaceReview"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:helix="clr-namespace:HelixToolkit.Wpf;assembly=HelixToolkit.Wpf"
+            xmlns:converters="clr-namespace:Clients.CalibrationModule.Converters"
+            xmlns:controls="clr-namespace:Clients.CalibrationModule.Controls"
+            mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300"
+            x:Name="This">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="NameTextBlock" HorizontalAlignment="Center" FontSize="14" Grid.Row="0"
+                   Text="{Binding Path=Header, ElementName=This}"/>
+        <StackPanel Margin="8" VerticalAlignment="Bottom" Grid.Row="1" DataContext="{Binding Descriptor, ElementName=This}">
+            <TextBlock Text="{Binding Path=Count, StringFormat='Number of Points: {0}'}"/>
+            <TextBlock Text="{Binding Path=Sphericity, StringFormat='Sphericity: {0}', Converter={converters:DoubleToPercentConverter}}"/>
+            <TextBlock Text="{Binding Path=QualityOfFit, StringFormat='Quality of Fit: {0}', Converter={converters:DoubleToPercentConverter}}"/>
+            <TextBlock Text="{Binding Path=Radius, StringFormat='Radius: {0}', Converter={converters:Point3DToStringConverter}}"/>
+            <TextBlock Text="{Binding Path=Center, StringFormat='Hard Offset Vector: {0}', Converter={converters:Point3DToStringConverter}}"/>
+        </StackPanel>
+        <helix:HelixViewport3D x:Name="ViewPort" Grid.Row="1" IsRotationEnabled="True" IsPanEnabled="True"
+                               Margin="1" ShowCoordinateSystem="False" ShowCameraInfo="False"
+                               ViewCubeTopText="UH" ViewCubeBottomText="DH" ViewCubeRightText="N" ViewCubeLeftText="S" ViewCubeFrontText="E" ViewCubeBackText="W">
+            <helix:HelixViewport3D.DefaultCamera>
+                <PerspectiveCamera Position="396.403,287.942,47.100" LookDirection="-396.403,-287.942,-47.100" UpDirection="-0.078,-0.056,0.995" FieldOfView="45" NearPlaneDistance="0.1"/>
+            </helix:HelixViewport3D.DefaultCamera>
+            <helix:HelixViewport3D.Camera>
+                <PerspectiveCamera Position="396.403,287.942,47.100" LookDirection="-396.403,-287.942,-47.100" UpDirection="-0.078,-0.056,0.995" FieldOfView="45" NearPlaneDistance="0.1"/>
+            </helix:HelixViewport3D.Camera>
+            <helix:SunLight/>
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <AmbientLight Color="#FFFFFF"/>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+        </helix:HelixViewport3D>
+    </Grid>
+</controls:SurveyControl>
